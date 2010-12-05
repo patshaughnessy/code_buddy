@@ -6,11 +6,11 @@ Gem::Specification.new do |s|
   s.name        = "code_buddy"
   s.version     = CodeBuddy::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ['Patrick Shaughnessy, Alex Rothenberg, Daniel Higginbotham']
+  s.authors     = ['Pat Shaughnessy, Alex Rothenberg, Daniel Higginbotham']
   s.email       = ['pat@patshaughnessy.net, alex@alexrothenberg.com, daniel@flyingmachinestudios.com']
   s.homepage    = "http://github.com/patshaughnessy/code_buddy"
-  s.summary     = %q{Write a gem summary}
-  s.description = %q{Write a gem description}
+  s.summary     = %q{See the Ruby code running in your app.}
+  s.description = %q{See the Ruby code running in your app.}
 
   s.rubyforge_project = "code_buddy"
 
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency             'rack',          '~> 1.2.0'
   s.add_dependency             'sinatra',       '~> 1.1.0'
   s.add_dependency             'actionpack',    '~> 3.0.1'
+  s.add_dependency             'json_pure',     '~> 1.4.6'
   
   s.add_development_dependency 'rake',          '~> 0.8.7'
   s.add_development_dependency 'rspec',         '~> 2.1.0'
