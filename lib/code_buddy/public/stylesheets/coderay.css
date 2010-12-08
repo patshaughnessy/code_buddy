@@ -1,0 +1,102 @@
+.CodeRay {
+  background-color: black;
+  border: 1px solid black;
+  color: #E6E0DB;
+  overflow: auto;
+  font-size: 12px;
+}
+.CodeRay pre {
+  margin: 0px;
+  padding: 0px;
+  font-family: Monaco;
+}
+
+.CodeRay .an { color:#E7BE69 }                      /* html attribute */
+.CodeRay .c  { color:#AF1CD4; }                     /* comment */
+.CodeRay .ch { color:#509E4F }                      /* escaped character */
+.CodeRay .cl { color:#A9A871 }                         /* class */
+.CodeRay .co { color:#FFF }                         /* constant */
+.CodeRay .fl { color:#A4C260 }                      /* float */
+.CodeRay .fu { color:#F7CD00 }                      /* function */
+.CodeRay .gv { color:#D0CFFE }                      /* global variable */
+.CodeRay .i  { color:#009C9B }                      /* integer */
+.CodeRay .il { background:#151515 }                 /* inline code */
+.CodeRay .iv { color:#F7CD00 }                      /* instance variable */
+.CodeRay .pp { color:#E7BE69 }                      /* doctype */
+.CodeRay .r  { color:#FF5C00 }                      /* keyword */
+.CodeRay .kw { color:#FF5C00 }                      /* keyword */
+.CodeRay .rx { color:#009C9B }                      /* regex */
+.CodeRay .s  { color:#00FF00 }                      /* string */
+.CodeRay .sy { color:#009C9B }                      /* symbol */
+.CodeRay .ta { color:#E7BE69 }                      /* html tag */
+.CodeRay .pc { color:#6C9CBD }                      /* boolean */
+
+	.overlay {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		/* background: #56547A; */
+		background: #CCCCFF;
+		opacity: 0.35;
+		-moz-opacity: 0.35;
+		filter:alpha(opacity=35);
+	}
+	.container {
+		position: relative;
+		/* float: left; */
+}
+
+#shadow {
+	width: 600px;
+	position: relative;
+	border-right: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	background: #666666;
+}
+#bodyblock {
+	width: 600px;
+	position: relative;
+	top: -3px;
+	left: -3px;
+	border-right: 1px solid #666666;
+	border-bottom: 1px solid #666666;
+	text-align: left;
+	color: #666;
+	background: #ff9966;
+}
+#header {
+	width: 600px;
+	height: 20px;
+	text-align: left;
+	background: #c0c0c0;
+	line-height: 20px;
+  font-family: Monaco;
+  font-size: 10px;
+}
+#header_left {
+  width: 300px;
+  float: left;
+	text-align: left;
+}
+#header_right {
+  width: 300px;
+  float: right;
+	text-align: right;
+	vertical-align: middle;
+}
+#header_right a.icon {
+  background:url(/images/right.png);
+  display:block;
+  float:right;
+  width:20px;
+  height:20px;
+}
+#header_left a.icon {
+  background:url(/images/left.png);
+  display:block;
+  float:left;
+  width:20px;
+  height:20px;
+}

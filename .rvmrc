@@ -1,1 +1,1 @@
-rvm @code_buddy
+rvm --create use @code_buddy

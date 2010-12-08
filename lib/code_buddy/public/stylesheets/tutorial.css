@@ -1,0 +1,73 @@
+html {
+    font-family: Monaco;
+    color: #E6E0DB;
+    font-size:0.95em;
+    font-color: white;
+    background-color: #333333;
+}
+
+#log div {
+    margin:3px;
+    padding:3px;
+    background:#ddd;
+}
+
+.banner {
+  position: fixed;
+}
+
+#code {
+  min-height: 340px;
+  border-style: ridge;
+  border-color: #666666;
+  background-color: black;
+  margin-left: 30px;
+  position: fixed;
+  top:200;
+  width:80%;
+  opacity:0.9;
+  z-index:10;
+}
+
+#stack {
+  position: absolute; 
+  right:0;
+  top:0;
+  z-index:1;
+  text-align: right;
+}
+
+.code_buddy {
+  position: relative;
+  z-index:1;
+}
+
+.hidden {
+	display: none;
+}
+
+.selected .code {
+	display: block;
+}
+.selected {
+	color: blue;
+}
+
+ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+li {
+  border-color: #666666;
+  font-size:0.95em;
+  font-size: 12px;
+  font-family: Monaco;
+  line-height: 23px;
+  list-style: none;
+}
+
+div#separator {
+  min-height: 20px;
+}
+
