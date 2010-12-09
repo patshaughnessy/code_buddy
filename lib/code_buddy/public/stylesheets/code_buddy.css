@@ -56,11 +56,6 @@ a {
   padding: 5px;
   background-color: #222222;
 }
-.code_buddy {
-  position: relative;
-  padding: 5px;
-  z-index:1;
-}
 #code {
   min-height: 340px;
   border-style: ridge;
@@ -69,14 +64,25 @@ a {
   position: fixed;
   top:200;
   width:80%;
-  opacity:0.9;
+  opacity:0.8;
   z-index:10;
   white-space: pre;
+}
+#selected_line {
+  border-style: ridge;
+  border-color: #666666;
+  background-color: black;
+  position: fixed;
+  top:180;
+  width:80%;
+  opacity:0.8;
+  z-index:10;
+  font-size: 12px;
 }
 
 #stack {
   position: absolute; 
-  right:0;
+  right:5px;
   top:60px;
   z-index:1;
   text-align: right;
@@ -94,14 +100,8 @@ ul {
 
 li {
   border-color: #666666;
-  font-size:0.95em;
   font-size: 12px;
   font-family: Monaco;
   line-height: 23px;
   list-style: none;
 }
-
-div#separator {
-  min-height: 20px;
-}
-
