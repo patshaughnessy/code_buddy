@@ -5,12 +5,15 @@ module CodeBuddy
 
     attr_reader :path
     attr_reader :line
-    attr_reader :code
 
     def initialize(exception_string)
-      @path, @line = exception_string.split(':')
-      @line = @line.to_i
-    
+      if exception_string =~ /\s*([^:\s]+):([0-9]+)\s*/
+        @path = $1
+        @line = $2.to_i
+      else
+        @path = exception_string
+        @line = 0
+      end
       code
     end
 
@@ -38,7 +41,7 @@ module CodeBuddy
           formatted_lines_below
         ].join
       rescue => exception
-        "Unable to read the file #{path}"
+        "<span class=\"coderay\">Unable to read file:\n&nbsp;\"#{@path}\"</span>"
       end
     end
   end

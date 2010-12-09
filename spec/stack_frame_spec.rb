@@ -123,7 +123,7 @@ describe CodeBuddy::StackFrame do
                          raises(Errno::ENOENT.new('/no/such/file.rb'))
 
       stack_frame = CodeBuddy::StackFrame.new('/no/such/file.rb') 
-      stack_frame.code.should == 'Unable to read the file /no/such/file.rb'
+      stack_frame.code.should == "<span class=\"coderay\">Unable to read file:\n&nbsp;\"/no/such/file.rb\"</span>"
     end
   end
 end

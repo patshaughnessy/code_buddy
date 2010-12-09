@@ -16,19 +16,23 @@ module CodeBuddy
     end
 
     get '/' do
+      display_stack(0)
+    end
+
+    get '/new' do
       erb :form
     end
 
     post '/' do
       self.class.stack_string = params[:stack]
-      redirect '/stack'
+      redirect '/'
     end
 
     get '/stack' do
       display_stack(0)
     end
 
-    get '/stack/:selected' do
+    get '/:selected' do
       display_stack(params[:selected].to_i)
     end
 
@@ -38,8 +42,9 @@ module CodeBuddy
         @stack.selected = selected_param
         erb :index
       else
-        redirect '/'
+        redirect '/new'
       end
     end
+
   end
 end
