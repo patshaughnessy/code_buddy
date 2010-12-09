@@ -60,7 +60,7 @@ describe CodeBuddy::StackFrame do
       end
 
       it 'should read code from the middle of a file' do
-        CodeRay.expects(:scan).with(source_code[4,25], :ruby).returns(parsed_code=mock)
+        CodeRay.expects(:scan).with(source_code[4 ... 25], :ruby).returns(parsed_code=mock)
         parsed_code.expects(:html).
                     with(:line_number_start => 5, :line_numbers => :inline, :wrap => :span).
                     returns(formatted_source=mock)
@@ -69,7 +69,7 @@ describe CodeBuddy::StackFrame do
         stack_frame.code.should == formatted_source
       end
       it 'should read code from the top of a file' do
-        CodeRay.expects(:scan).with(source_code[0,13], :ruby).returns(parsed_code=mock)
+        CodeRay.expects(:scan).with(source_code[0 ... 13], :ruby).returns(parsed_code=mock)
         parsed_code.expects(:html).
                     with(:line_number_start => 1, :line_numbers => :inline, :wrap => :span).
                     returns(formatted_source=mock)
@@ -79,7 +79,7 @@ describe CodeBuddy::StackFrame do
         stack_frame.code.should == formatted_source
       end
       it 'should read code from the bottom of a file' do
-        CodeRay.expects(:scan).with(source_code[19, 32], :ruby).returns(parsed_code=mock)
+        CodeRay.expects(:scan).with(source_code[19 ... 32], :ruby).returns(parsed_code=mock)
         parsed_code.expects(:html).
                     with(:line_number_start => 20, :line_numbers => :inline, :wrap => :span).
                     returns(formatted_source=mock)

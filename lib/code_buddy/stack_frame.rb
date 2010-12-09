@@ -21,7 +21,7 @@ module CodeBuddy
         last_line_to_show  = [lines_of_code.length, line + 1 + CODE_WINDOW].min
         
 
-        subset = lines_of_code[first_line_to_show-1, last_line_to_show-1]
+        subset = lines_of_code[first_line_to_show-1 ... last_line_to_show-1]
 
         CodeRay.scan(subset, :ruby).html(:line_number_start => first_line_to_show, 
                                          :line_numbers      => :inline, 
