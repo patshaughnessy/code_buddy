@@ -1,19 +1,13 @@
 <html>
-<head>
-  <title>Code Buddy</title>
-  <link href="stylesheets/tutorial.css" media="screen" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/coderay.css" media="screen" rel="stylesheet" type="text/css" />
-  <script src="javascripts/jquery.js" type="text/javascript"></script>
-  <script src="javascripts/underscore.js" type="text/javascript"></script>
-  <script src="javascripts/backbone.js" type="text/javascript"></script>
-</head>
+<%= erb :header %>
 <body>
-<h1><img src="images/buddy.jpeg"/>&nbsp;CodeBuddy</h1>
-Paste your stack:
-<form action="/" method="post">
-  <textarea name="stack" rows="30" cols="150">
-  </textarea>
-  <input type="Submit"/>
-</form>
+  <%= erb :banner %>
+  <div class="form">
+    Paste your stack:
+    <form action="/" method="post">
+      <textarea name="stack" rows="40" cols="130" class="stack_form"></textarea><br/>
+      <input type="submit"/>
+    </form>
+  </div>
 </body>
 </html>
