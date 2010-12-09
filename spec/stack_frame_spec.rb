@@ -60,33 +60,61 @@ describe CodeBuddy::StackFrame do
       end
 
       it 'should read code from the middle of a file' do
-        CodeRay.expects(:scan).with(source_code[4 ... 25], :ruby).returns(parsed_code=mock)
-        parsed_code.expects(:html).
-                    with(:line_number_start => 5, :line_numbers => :inline, :wrap => :span).
-                    returns(formatted_source=mock)
+        CodeRay.expects(:scan).with(source_code[4 ... 14],  :ruby).returns(parsed_code_above=mock)
+        CodeRay.expects(:scan).with(source_code[14],        :ruby).returns(parsed_code_at=mock)
+        CodeRay.expects(:scan).with(source_code[15 ... 25], :ruby).returns(parsed_code_below=mock)
+        parsed_code_above.expects(:html).
+                          with(:line_number_start => 5, :line_numbers => :inline, :wrap => :span).
+                          returns(formatted_source_above=mock)
+        parsed_code_at.expects(:html).
+                          with(:line_number_start => 15, :line_numbers => :inline, :wrap => :span).
+                          returns(formatted_source_at=mock)
+        parsed_code_below.expects(:html).
+                          with(:line_number_start => 16, :line_numbers => :inline, :wrap => :span).
+                          returns(formatted_source_below=mock)
 
         stack_frame = CodeBuddy::StackFrame.new("/gems/actionpack-3.0.3/lib/abstract_controller/base.rb:15:in `new'") 
-        stack_frame.code.should == formatted_source
+
+        formatted_source_at_with_hightlight = "<span class='container selected'>#{formatted_source_at}<span class='overlay'></span></span>"
+        stack_frame.code.should == "#{formatted_source_above}#{formatted_source_at_with_hightlight}#{formatted_source_below}"
       end
       it 'should read code from the top of a file' do
-        CodeRay.expects(:scan).with(source_code[0 ... 13], :ruby).returns(parsed_code=mock)
-        parsed_code.expects(:html).
-                    with(:line_number_start => 1, :line_numbers => :inline, :wrap => :span).
-                    returns(formatted_source=mock)
+        CodeRay.expects(:scan).with(source_code[0 ... 2],  :ruby).returns(parsed_code_above=mock)
+        CodeRay.expects(:scan).with(source_code[2],        :ruby).returns(parsed_code_at=mock)
+        CodeRay.expects(:scan).with(source_code[3 ... 13], :ruby).returns(parsed_code_below=mock)
+        parsed_code_above.expects(:html).
+                          with(:line_number_start => 1, :line_numbers => :inline, :wrap => :span).
+                          returns(formatted_source_above=mock)
+        parsed_code_at.expects(:html).
+                          with(:line_number_start => 3, :line_numbers => :inline, :wrap => :span).
+                          returns(formatted_source_at=mock)
+        parsed_code_below.expects(:html).
+                          with(:line_number_start => 4, :line_numbers => :inline, :wrap => :span).
+                          returns(formatted_source_below=mock)
 
         stack_frame = CodeBuddy::StackFrame.new("/gems/actionpack-3.0.3/lib/abstract_controller/base.rb:3:in `new'") 
 
-        stack_frame.code.should == formatted_source
+        formatted_source_at_with_hightlight = "<span class='container selected'>#{formatted_source_at}<span class='overlay'></span></span>"
+        stack_frame.code.should == "#{formatted_source_above}#{formatted_source_at_with_hightlight}#{formatted_source_below}"
       end
       it 'should read code from the bottom of a file' do
-        CodeRay.expects(:scan).with(source_code[19 ... 32], :ruby).returns(parsed_code=mock)
-        parsed_code.expects(:html).
-                    with(:line_number_start => 20, :line_numbers => :inline, :wrap => :span).
-                    returns(formatted_source=mock)
+        CodeRay.expects(:scan).with(source_code[19 ... 29],  :ruby).returns(parsed_code_above=mock)
+        CodeRay.expects(:scan).with(source_code[29],        :ruby).returns(parsed_code_at=mock)
+        CodeRay.expects(:scan).with(source_code[30 ... 32], :ruby).returns(parsed_code_below=mock)
+        parsed_code_above.expects(:html).
+                          with(:line_number_start => 20, :line_numbers => :inline, :wrap => :span).
+                          returns(formatted_source_above=mock)
+        parsed_code_at.expects(:html).
+                          with(:line_number_start => 30, :line_numbers => :inline, :wrap => :span).
+                          returns(formatted_source_at=mock)
+        parsed_code_below.expects(:html).
+                          with(:line_number_start => 31, :line_numbers => :inline, :wrap => :span).
+                          returns(formatted_source_below=mock)
 
         stack_frame = CodeBuddy::StackFrame.new("/gems/actionpack-3.0.3/lib/abstract_controller/base.rb:30:in `new'") 
-      
-        stack_frame.code.should == formatted_source
+
+        formatted_source_at_with_hightlight = "<span class='container selected'>#{formatted_source_at}<span class='overlay'></span></span>"
+        stack_frame.code.should == "#{formatted_source_above}#{formatted_source_at_with_hightlight}#{formatted_source_below}"
       end
     end
     

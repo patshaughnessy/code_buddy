@@ -50,9 +50,6 @@ html {
 .selected .code {
 	display: block;
 }
-.selected {
-	color: blue;
-}
 
 ul {
   margin-left: 0;
