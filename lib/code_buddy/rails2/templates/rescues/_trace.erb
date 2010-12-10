@@ -1,13 +1,13 @@
 <%
   traces = [
-    ["Application Trace", @application_trace],
-    ["Framework Trace", @framework_trace],
-    ["Full Trace", @full_trace]
+    ["Application Trace", @exception.application_backtrace],
+    ["Framework Trace", @exception.framework_backtrace],
+    ["Full Trace", @exception.clean_backtrace]
   ]
   names = traces.collect {|name, trace| name}
 %>
 
-<p><code>Rails.root: <%= defined?(Rails) && Rails.respond_to?(:root) ? Rails.root : "unset" %></code></p>
+<p><code>RAILS_ROOT: <%= defined?(RAILS_ROOT) ? RAILS_ROOT : "unset" %></code></p>
 
 <div id="traces">
   <% names.each do |name| %>
@@ -20,7 +20,7 @@
 
   <% traces.each do |name, trace| %>
     <div id="<%= name.gsub /\s/, '-' %>" style="display: <%= name == "Application Trace" ? 'block' : 'none' %>;">
-      <pre><code><%= trace.enum_with_index.collect { |line, index| link_to line, "code_buddy/#{index}" }.join("\n").html_safe -%></code></pre>
+      <pre><code><%= trace.enum_with_index.collect { |line, index| link_to line, "code_buddy/stack/#{index}" }.join("\n").html_safe -%></code></pre>
     </div>
   <% end %>
 </div>

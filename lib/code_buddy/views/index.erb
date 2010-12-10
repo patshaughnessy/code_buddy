@@ -12,7 +12,7 @@
 </div>
 <ul id="stack"></ul>
 <div id='code'></div>
-<script src="javascripts/code_buddy.js" type="text/javascript"></script>
+<script src="<%= @static_file_prefix  %>javascripts/code_buddy.js" type="text/javascript"></script>
 <script>
   var stack = new Stack(<%= @stack.to_json %>);
   var stackView = new StackView({model: stack});

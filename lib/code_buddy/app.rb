@@ -5,9 +5,11 @@ module CodeBuddy
 
     class << self
       attr_reader :stack
+      attr_reader :rails
 
       def exception=(exception)
         @stack = Stack.new(exception)
+        @rails = true
       end
 
       def stack_string=(stack_string)
@@ -16,23 +18,24 @@ module CodeBuddy
     end
 
     get '/' do
-      display_stack(0)
+      redirect "#{rails_prefix}/stack"
     end
 
     get '/new' do
       erb :form
     end
 
-    post '/' do
+    post '/new' do
       self.class.stack_string = params[:stack]
-      redirect '/'
+      redirect "#{rails_prefix}/stack"
     end
 
     get '/stack' do
       display_stack(0)
     end
 
-    get '/:selected' do
+    get '/stack/:selected' do
+      @static_file_prefix = '../'
       display_stack(params[:selected].to_i)
     end
 
@@ -42,8 +45,12 @@ module CodeBuddy
         @stack.selected = selected_param
         erb :index
       else
-        redirect '/new'
+        redirect "#{rails_prefix}/new"
       end
+    end
+
+    def rails_prefix
+      self.class.rails ? '/code_buddy' : ''
     end
 
   end

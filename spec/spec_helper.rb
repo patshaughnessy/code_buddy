@@ -8,12 +8,17 @@ module Rails
   class Railtie
     def self.initializer(name); end
   end
+  class VERSION
+    MAJOR = 3
+  end
 end
 module ActionDispatch
   class ShowExceptions
     def call(env); end
   end
 end
+
+def silence_warnings; end
 
 require 'code_buddy'
 

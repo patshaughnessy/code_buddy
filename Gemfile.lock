@@ -4,7 +4,7 @@ PATH
     code_buddy (0.0.2)
       coderay (~> 0.9.6)
       json_pure (~> 1.4.6)
-      rack (~> 1.2.0)
+      rack
       sinatra (~> 1.1.0)
 
 GEM
@@ -38,7 +38,7 @@ DEPENDENCIES
   coderay (~> 0.9.6)
   json_pure (~> 1.4.6)
   mocha (~> 0.9.10)
-  rack (~> 1.2.0)
+  rack
   rake (~> 0.8.7)
   rspec (~> 2.2.0)
   sinatra (~> 1.1.0)
