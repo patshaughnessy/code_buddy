@@ -13,14 +13,13 @@ body {
 .banner {
   background-color: #222222;
   width: 100%;
-  height: 70px;
+  height: 100px;
   position: fixed;
   z-index:10;
 }
 
 .buddy {
   float: left;
-  height: 60px;
   padding: 5px;
 }
 
@@ -49,7 +48,7 @@ a {
 }
 
 #legend {
-  top:70;
+  top:100;
   font-size: 0.8em;
   z-index:10;
   position: fixed;
@@ -83,7 +82,7 @@ a {
 #stack {
   position: absolute; 
   right:5px;
-  top:60px;
+  top:100px;
   z-index:1;
   text-align: right;
   font-size: 0.8em;

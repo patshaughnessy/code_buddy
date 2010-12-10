@@ -1,4 +1,3 @@
-<h1>Code Buddy</h1>
 <%
   traces = [
     ["Application Trace", @application_trace],
@@ -21,11 +20,7 @@
 
   <% traces.each do |name, trace| %>
     <div id="<%= name.gsub /\s/, '-' %>" style="display: <%= name == "Application Trace" ? 'block' : 'none' %>;">
-      <pre><code> <% trace.each_with_index do |line, index| -%>
-          <%= link_to line, "code_buddy/#{index}" -%>
-        <% end -%>
-      </code></pre>
-      <pre><code><%=h trace.join "\n" %></code></pre>
+      <pre><code><% trace.each_with_index { |line, index| -%><%= link_to line, "code_buddy/#{index}" -%><% } -%></code></pre>
     </div>
   <% end %>
 </div>
