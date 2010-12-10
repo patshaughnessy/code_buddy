@@ -1,0 +1,19 @@
+=Code Buddy
+
+Code Buddy will display a Ruby stack in a browser, along with code snippets from each file in the stack.
+
+== Run as a Sinatra app
+
+  $ gem install code_buddy
+  $ code_buddy
+  == Sinatra/1.1.0 has taken the stage on 4567 for development with backup from Mongrel
+
+Now open http://localhost:4567 and paste your stack.
+
+== Run as Rack middleware
+
+Just add code_buddy to your Gemfile:
+
+  gem 'code_buddy'
+
+Now if config.consider_all_requests_local=true whenever you see a exception page in your Rails app you'll be able to click on the stack and see it inside Code Buddy with the corresponding code snippets.
