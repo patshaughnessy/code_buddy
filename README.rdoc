@@ -1,6 +1,18 @@
 =CodeBuddy
 
-CodeBuddy will display a Ruby stack in your browser, along with code snippets around each line of code in the stack.
+CodeBuddy makes it easy for you to understand the code behind each line of a Ruby exception stack.  When something goes wrong during development and you get an exception do you read through the stack trace and  start opening files in VIM or TextMate?  With CodeBuddy the stack trace and source files are all available in your browser making it easy to understand what's going on.
+
+== Use it in your Rails app
+
+Simply add one line to your app's Gemfile and the Rails exception page just got better.
+
+  gem 'code_buddy'
+
+And install it:
+
+  $ bundle install
+
+Now when you're running in development (or any environment with config.consider_all_requests_local=true) whenever you see a exception page you'll be able to click on the stack and see it inside CodeBuddy.
 
 == Run as a Sinatra app
 
@@ -10,21 +22,9 @@ CodeBuddy will display a Ruby stack in your browser, along with code snippets ar
 
 Now open http://localhost:4567 and paste your stack.
 
-== Run as Rack middleware
-
-Just add CodeBuddy to your Gemfile in any Rails 3 app:
-
-  gem 'code_buddy'
-
-And install it:
-
-  $ bundle install
-
-Now if config.consider_all_requests_local=true whenever you see a exception page you'll be able to click on the stack and see it inside CodeBuddy.
-
 == Caveats
 
-This should also work as Rack middleware in Rails 2.3.x soon, but we haven't tested it yet.
+This should also work as Rack middleware in Rails 2.3.x or any Rack app soon, but we haven't tried it yet.
 
 We also haven't tested viewing a stack with Internet Explorer or running the Sinatra app on Windows.
 

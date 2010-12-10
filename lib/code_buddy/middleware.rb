@@ -9,7 +9,9 @@ if rails_loaded
   module CodeBuddy
     class Railtie < Rails::Railtie
       initializer "code_buddy.add_middleware" do |app|
-        app.middleware.swap ActionDispatch::ShowExceptions, CodeBuddy::ShowExceptions
+        if app.config.action_dispatch.show_exceptions
+          app.middleware.swap ActionDispatch::ShowExceptions, CodeBuddy::ShowExceptions
+        end
       end
     end
 
