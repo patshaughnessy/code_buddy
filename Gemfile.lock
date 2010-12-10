@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    code_buddy (0.0.2)
+    code_buddy (0.0.3)
       coderay (~> 0.9.6)
       json_pure (~> 1.4.6)
       rack
