@@ -3,7 +3,7 @@ module CodeBuddy
     initializer "code_buddy.add_middleware" do |app|
       if app.config.action_dispatch.show_exceptions
         app.middleware.swap ActionDispatch::ShowExceptions, CodeBuddy::ShowExceptions
-        app.middleware.use  CodeBuddy::ShowApp
+        app.middleware.insert_before CodeBuddy::ShowExceptions, CodeBuddy::ShowApp
       end
     end
   end
