@@ -4,12 +4,11 @@ module CodeBuddy
     set :public, File.dirname(__FILE__) + '/public'
 
     class << self
-      attr_reader :stack
-      attr_reader :rails
+      attr_reader   :stack
+      attr_accessor :rails
 
       def exception=(exception)
         @stack = Stack.new(exception)
-        @rails = true
       end
 
       def stack_string=(stack_string)
