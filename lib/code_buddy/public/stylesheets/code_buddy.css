@@ -104,3 +104,8 @@ li {
   line-height: 23px;
   list-style: none;
 }
+
+li:hover {
+  background:#444;
+  cursor:pointer;
+}
