@@ -5,6 +5,16 @@ require 'mocha'
 require 'sinatra'
 
 module Rails
+  class MockEnvironment
+    def development?
+      true
+    end
+  end
+  class << self
+    def env
+      MockEnvironment.new
+    end
+  end
   class Railtie
     def self.initializer(name); end
   end
