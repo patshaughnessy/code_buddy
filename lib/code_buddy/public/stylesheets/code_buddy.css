@@ -109,3 +109,7 @@ li:hover {
   background:#444;
   cursor:pointer;
 }
+
+.bookmarked {
+  background:#666;
+}
