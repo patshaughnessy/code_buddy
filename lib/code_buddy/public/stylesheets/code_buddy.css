@@ -81,6 +81,13 @@ a {
   border-radius-bottomleft:5px;
   border-radius-bottomright:5px;
 }
+#legend ul {
+  margin:0;
+}
+#legend li {
+  padding:0;
+}
+
 
 #selected_line {
   border-style: ridge;
