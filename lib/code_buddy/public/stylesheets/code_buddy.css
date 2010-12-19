@@ -47,26 +47,41 @@ a {
   font-size:0.85em;
 }
 
+#code-viewer {
+  position: fixed;
+  top:110;
+  width:80%;
+  opacity:0.8;
+  z-index:10;
+  margin-left:10px;
+}
+
+#current-line-heading {
+  
+}
+
+#code {
+  min-height: 340px;
+  border:2px solid #666;
+  border-radius:5px;
+  -moz-border-radius:5px;
+  padding:5px;
+  background-color: black;
+  white-space: pre;
+}
+
 #legend {
   top:100;
   font-size: 0.8em;
   z-index:10;
-  position: fixed;
   padding: 5px;
-  background-color: #222222;
+  background: #222;
+  -moz-border-radius-bottomleft:5px;
+  -moz-border-radius-bottomright:5px;
+  border-radius-bottomleft:5px;
+  border-radius-bottomright:5px;
 }
-#code {
-  min-height: 340px;
-  border-style: ridge;
-  border-color: #666666;
-  background-color: black;
-  position: fixed;
-  top:200;
-  width:80%;
-  opacity:0.8;
-  z-index:10;
-  white-space: pre;
-}
+
 #selected_line {
   border-style: ridge;
   border-color: #666666;

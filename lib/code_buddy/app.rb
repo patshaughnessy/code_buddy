@@ -40,12 +40,8 @@ module CodeBuddy
 
     def display_stack(selected_param)
       @stack = self.class.stack
-      if @stack
-        @stack.selected = selected_param
-        erb :index
-      else
-        redirect "#{rails_prefix}/new"
-      end
+      @stack.selected = selected_param if @stack
+      erb :index
     end
 
     def rails_prefix

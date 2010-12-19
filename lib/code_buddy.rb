@@ -22,4 +22,4 @@ rescue NameError
   nil
 end
 
-# CodeBuddy::App.run!
+CodeBuddy::App.run!

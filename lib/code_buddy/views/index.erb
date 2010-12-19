@@ -2,19 +2,27 @@
 <html>
 <body>
   <%= erb :banner %>
-  <br/>
-  <div id="legend">
-    commands:<br/>
-    &#8593; move up the stack<br/>
-    &#8595; move down the stack<br/>
-    click to select a stack frame<br/>
+  <div class="form">
+    Paste your stack:
+    <form method="post" action="/new">
+      <textarea name="stack" rows="40" cols="130" class="stack_form"></textarea><br/>
+      <input type="submit" value="submit"/>
+    </form>
+  </div>  
+  <ul id="stack"></ul>
+  <div id="code-viewer">
+    <div id="code"></div>
+    <div id="legend">
+      commands:<br/>
+      &#8593; move up the stack<br/>
+      &#8595; move down the stack<br/>
+      n new stack trace<br />
+      click to select a stack frame<br/>
+    </div>
   </div>
-</div>
-<ul id="stack"></ul>
-<div id='code'></div>
-<script src="<%= @static_file_prefix  %>javascripts/code_buddy.js" type="text/javascript"></script>
-<script>
-  CodeBuddy.setup(<%= @stack.to_json %>)
-</script>
+  <script src="<%= @static_file_prefix  %>javascripts/code_buddy.js" type="text/javascript"></script>
+  <script>
+    CodeBuddy.setup(<%= @stack.to_json if @stack %>)
+  </script>
 </body>
 </html>
