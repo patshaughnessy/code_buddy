@@ -135,3 +135,7 @@ li:hover {
 .bookmarked {
   background:#666;
 }
+
+#opacity {
+  width:25px;
+}
