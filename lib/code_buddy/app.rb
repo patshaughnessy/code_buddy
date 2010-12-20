@@ -5,7 +5,7 @@ module CodeBuddy
 
     class << self
       attr_reader   :stack
-      attr_accessor :rails
+      attr_accessor :path_prefix
 
       def exception=(exception)
         @stack = Stack.new(exception)
@@ -17,7 +17,7 @@ module CodeBuddy
     end
 
     get '/' do
-      redirect "#{rails_prefix}/stack"
+      redirect "#{path_prefix}/stack"
     end
 
     get '/new' do
@@ -26,7 +26,7 @@ module CodeBuddy
 
     post '/new' do
       self.class.stack_string = params[:stack]
-      redirect "#{rails_prefix}/stack"
+      redirect "#{path_prefix}/stack"
     end
 
     get '/stack' do
@@ -44,12 +44,12 @@ module CodeBuddy
         @stack.selected = selected_param
         erb :index
       else
-        redirect "#{rails_prefix}/new"
+        redirect "#{path_prefix}/new"
       end
     end
 
-    def rails_prefix
-      self.class.rails ? '/code_buddy' : ''
+    def path_prefix
+      self.class.path_prefix 
     end
 
   end

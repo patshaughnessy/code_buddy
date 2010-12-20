@@ -17,3 +17,5 @@ module ActionController
     end
   end
 end
+
+CodeBuddy::App.path_prefix = '/code_buddy'
