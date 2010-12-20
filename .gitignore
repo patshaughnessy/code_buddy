@@ -1,6 +1,10 @@
 pkg/*
 *.gem
 .bundle
+bundler
+cache
 *.swp
+*~
 Gemfile.lock
 example_trace
+tmp
