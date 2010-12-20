@@ -20,16 +20,16 @@ module CodeBuddy
       redirect "#{rails_prefix}/stack"
     end
 
-    get '/new' do
+    get '/code_buddy/new' do
       erb :form
     end
 
-    post '/new' do
+    post '/code_buddy/new' do
       self.class.stack_string = params[:stack]
       redirect "#{rails_prefix}/stack"
     end
 
-    get '/stack' do
+    get '/code_buddy/stack' do
       display_stack(0)
     end
 

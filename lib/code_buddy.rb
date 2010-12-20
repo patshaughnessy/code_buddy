@@ -9,7 +9,7 @@ require 'code_buddy/stack_frame'
 require 'code_buddy/middleware'
 
 begin
-  if Rails.env.development?
+  if Rails.env.development? || Rails.env.test?
     CodeBuddy::App.rails = true
     case Rails::VERSION::MAJOR
     when 2:
