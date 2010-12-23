@@ -1,11 +1,12 @@
 module CodeBuddy
   class App < Sinatra::Base
+    set :static, true
     set :views,  File.dirname(__FILE__) + '/views'
     set :public, File.dirname(__FILE__) + '/public'
 
     class << self
       attr_reader   :stack
-      attr_accessor :rails
+      attr_accessor :path_prefix
 
       def exception=(exception)
         @stack = Stack.new(exception)
@@ -17,19 +18,19 @@ module CodeBuddy
     end
 
     get '/' do
-      redirect "#{rails_prefix}/stack"
+      redirect "#{path_prefix}/stack"
     end
 
-    get '/code_buddy/new' do
+    get '/new' do
       erb :form
     end
 
-    post '/code_buddy/new' do
+    post '/new' do
       self.class.stack_string = params[:stack]
-      redirect "#{rails_prefix}/stack"
+      redirect "#{path_prefix}/stack"
     end
 
-    get '/code_buddy/stack' do
+    get '/stack' do
       display_stack(0)
     end
 
@@ -44,12 +45,12 @@ module CodeBuddy
         @stack.selected = selected_param
         erb :index
       else
-        redirect "#{rails_prefix}/new"
+        redirect "#{path_prefix}/new"
       end
     end
 
-    def rails_prefix
-      self.class.rails ? '/code_buddy' : ''
+    def path_prefix
+      self.class.path_prefix
     end
 
   end

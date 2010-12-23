@@ -11,7 +11,7 @@ Scenario: See a stack trace with links
     And I run "rake db:migrate"
     And I enable show_exceptions in "config/environments/test.rb"
     And I run "cp ../../../features/templates/rails_exception.feature.template features/rails_exception.feature"
-    And I run "bundle exec rake cucumber -v"
+    And I run "rake cucumber"
     Then it should pass with:
        """
        1 scenario (1 passed)

@@ -5,6 +5,7 @@ module CodeBuddy
         app.middleware.swap ActionDispatch::ShowExceptions, CodeBuddy::ShowExceptions
         app.middleware.insert_before CodeBuddy::ShowExceptions, CodeBuddy::ShowApp
       end
+      App.path_prefix = '/code_buddy'   # rails.prefix
     end
   end
 

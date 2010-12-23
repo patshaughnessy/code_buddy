@@ -2,5 +2,4 @@ Feature: Ensure CodeBuddy creates links as a stand alone Sinatra app
 
 Scenario: Clicking on a line of a stack trace on the exception page
    When I go to the home page
-   # And show me the page
    Then I should see "CodeBuddySee your Ruby stack come alive"
