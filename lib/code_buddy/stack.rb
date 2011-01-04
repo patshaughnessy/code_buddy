@@ -5,14 +5,14 @@ module CodeBuddy
 
     def initialize(exception_or_string)
       if exception_or_string.is_a?(Exception)
-        @selected = selected
-        @stack_frames = exception_or_string.backtrace.collect do |string|
-          StackFrame.new(string)
-        end
+        backtrace = exception_or_string.backtrace
+        backtrace = exception_or_string.first.split("\n") if backtrace.size == 1  #haml errors come through this way
       else
-        @stack_frames = exception_or_string.collect do |string|
-          StackFrame.new(string)
-        end
+        backtrace = exception_or_string
+      end
+
+      @stack_frames = backtrace.collect do |string|
+        StackFrame.new(string)
       end
     end
   end
