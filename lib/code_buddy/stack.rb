@@ -6,7 +6,7 @@ module CodeBuddy
     def initialize(exception_or_string)
       if exception_or_string.is_a?(Exception)
         backtrace = exception_or_string.backtrace
-        backtrace = exception_or_string.first.split("\n") if backtrace.size == 1  #haml errors come through this way
+        backtrace = backtrace.first.split("\n") if backtrace.size == 1  #haml errors come through this way
       else
         backtrace = exception_or_string
       end
