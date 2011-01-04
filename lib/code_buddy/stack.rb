@@ -15,5 +15,9 @@ module CodeBuddy
         StackFrame.new(string)
       end
     end
+
+    def edit(index)
+      @stack_frames[index].open_in_editor
+    end
   end
 end

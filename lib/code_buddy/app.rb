@@ -38,6 +38,10 @@ module CodeBuddy
       display_stack(params[:selected].to_i)
     end
 
+    get '/edit/:selected' do
+      self.class.stack.edit(params[:selected].to_i)
+    end
+
     def display_stack(selected_param)
       @stack = self.class.stack
       if @stack
