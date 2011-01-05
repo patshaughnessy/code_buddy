@@ -6,6 +6,7 @@ module CodeBuddy
         app.middleware.insert_before CodeBuddy::ShowExceptions, CodeBuddy::ShowApp
       end
     end
+    CodeBuddy::App.path_prefix = '/code_buddy'
   end
 
   class ShowExceptions < ActionDispatch::ShowExceptions
@@ -20,3 +21,5 @@ module CodeBuddy
     end
   end
 end
+
+

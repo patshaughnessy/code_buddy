@@ -27,5 +27,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake',          '~> 0.8.7'
   s.add_development_dependency 'rspec',         '~> 2.2.0'
   s.add_development_dependency 'mocha',         '~> 0.9.10'
-
+  s.add_development_dependency 'cucumber',      '~> 0.9.4'
+  s.add_development_dependency 'aruba',         '~> 0.2.2'
+  # s.add_development_dependency 'capybara'
+  # s.add_development_dependency 'akephalos'
 end

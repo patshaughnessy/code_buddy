@@ -39,5 +39,16 @@ module CodeBuddy
         "<span class=\"coderay\">Unable to read file:\n&nbsp;\"#{@path}\"</span>"
       end
     end
+    
+    def open_in_editor
+      case ENV['EDITOR']
+      when 'mate'
+        `mate #{path} -l #{line}`
+      when 'mvim'
+        `mvim +#{line} #{path}` 
+      else
+        puts "Sorry unable to open the file for editing.  Please set your environment variable to either mate or mvim 'export EDITOR=mate' and restart the server"
+      end
+    end
   end
 end
