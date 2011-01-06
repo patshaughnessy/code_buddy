@@ -20,5 +20,3 @@ begin
 rescue NameError
   nil
 end
-
-CodeBuddy::App.run!
