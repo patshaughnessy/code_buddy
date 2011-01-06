@@ -1,4 +1,4 @@
-Feature: Make sure CodeBuddy works with a Rails3 app
+Feature: Make sure CodeBuddy works with a Rails 2 app
 
 @announce
 Scenario: See a stack trace with links
