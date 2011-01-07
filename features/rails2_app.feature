@@ -1,8 +1,10 @@
 Feature: Make sure CodeBuddy works with a Rails 2 app
 
+@disable-bundler
 @announce
 Scenario: See a stack trace with links
-  Given I have created a new Rails 2 app "new_rails2_app" with code_buddy 
+  Given I'm using a clean gemset "code_buddy_rails2_test"
+    And I have created a new Rails 2 app "new_rails2_app" with code_buddy 
     And I run "script/generate scaffold user"
     And I overwrite "app/views/users/index.html.erb" with:
       """
@@ -10,7 +12,6 @@ Scenario: See a stack trace with links
       """
     And I run "rake db:migrate"
     And I run "cp ../../../features/templates/rails_exception.feature.template features/rails_exception.feature"
-    And I am pending
     And I run "rake cucumber"
     Then it should pass with:
        """

@@ -19,7 +19,7 @@ end
 
 Given /^I have created a new Rails 2 app "([^"]*)" with code_buddy$/ do |app_name|
   steps <<-STEPS
-    Given I run "gem install rails --version '=2.3.10'"
+    Given I run "bundle install --gemfile=../../features/support/Gemfile-rails2"
     And I successfully run "rails _2.3.10_ #{app_name}"
     And I cd to "#{app_name}"
     And I replace "# Specify gems that this application depends on and have them installed with rake gems:install" in "config/environment.rb" with:
@@ -27,11 +27,10 @@ Given /^I have created a new Rails 2 app "([^"]*)" with code_buddy$/ do |app_nam
       # Specify gems that this application depends on and have them installed with rake gems:install
       config.gem 'code_buddy' 
       config.middleware.use "CodeBuddy::ShowApp"
-      
       """
     And I run "mkdir vendor/gems"
     And I run "ln -s #{File.expand_path("../../..", __FILE__)} vendor/gems/code_buddy-#{CodeBuddy::VERSION}"
-    And I run "script/generate cucumber"
+    And I run "script/generate cucumber --capybara"
     And I run "rake db:migrate"
   STEPS
 end
