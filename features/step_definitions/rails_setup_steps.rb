@@ -62,7 +62,7 @@ Given /^I replace "([^"]*)" in "([^"]*)" with:$/ do |marker, file_name, new_text
       line
     end
   end
-  create_file(file_name, new_content, true)
+  _create_file(file_name, new_content, true)
 end
 
 

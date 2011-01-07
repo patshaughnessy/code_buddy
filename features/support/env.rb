@@ -5,5 +5,6 @@ require 'aruba/cucumber'
 
 Before do
   unset_bundler_env_vars
+  @aruba_timeout_seconds = 60
 end
 
