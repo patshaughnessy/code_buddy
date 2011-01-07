@@ -1,6 +1,7 @@
 Given /^I have created a new Rails 3 app "([^"]*)" with code_buddy$/ do |app_name|
   steps <<-STEPS
-    Given I successfully run "rails new #{app_name}"
+    Given I run "bundle install --gemfile=../../features/support/Gemfile-rails3"
+    And I successfully run "rails new #{app_name}"
     And I cd to "#{app_name}"
     And I append to "Gemfile" with:
       """
@@ -50,7 +51,7 @@ Given /^I enable show_exceptions in "([^"]*)"$/ do |file_name|
   # Given %Q[I replace "config.action_dispatch.show_exceptions = false" in "#{file_name}"], pystring #Cucumber::Ast::PyString.parse('config.action_dispatch.show_exceptions = true')
   cmd = "sed s/'config.action_dispatch.show_exceptions = false'/'config.action_dispatch.show_exceptions = true'/ #{file_name}"
   run_simple(cmd)
-  create_file(file_name, stdout_from(cmd), true)
+  _create_file(file_name, stdout_from(cmd), true)
 end
 
 Given /^I replace "([^"]*)" in "([^"]*)" with:$/ do |marker, file_name, new_text|

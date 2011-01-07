@@ -2,7 +2,8 @@ Feature: Make sure CodeBuddy works with a Rails3 app
 
 @announce
 Scenario: See a stack trace with links
-  Given I have created a new Rails 3 app "new_rails3_app" with code_buddy 
+  Given I'm using a clean gemset "code_buddy_rails3_test"
+    And I have created a new Rails 3 app "new_rails3_app" with code_buddy 
     And I run "rails generate scaffold users"
     And I overwrite "app/views/users/index.html.erb" with:
       """
