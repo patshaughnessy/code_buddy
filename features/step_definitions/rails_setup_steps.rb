@@ -13,6 +13,11 @@ Given /^I have created a new Rails 3 app "([^"]*)" with code_buddy$/ do |app_nam
       """
     And I run "bundle install"
     And I run "rails generate cucumber:install"
+    And I replace "# Add more mappings here." in "features/support/paths.rb" with:
+      """
+      when "code_buddy"
+        "/code_buddy/stack/0"
+      """
     And I run "rake db:migrate"
   STEPS
 end
