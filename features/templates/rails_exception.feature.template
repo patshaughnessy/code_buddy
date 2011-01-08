@@ -4,5 +4,5 @@ Feature: Ensure CodeBuddy creates links in a Rails app
 Scenario: Clicking on a line of a stack trace on the exception page
    When I go to the users page
    Then I should see "app/views/users/index.html.erb:1"
-    And I follow "app/views/users/index.html.erb:1"
+    And I am on code_buddy
    Then I should see "CodeBuddySee your Ruby stack come alive"
