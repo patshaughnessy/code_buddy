@@ -2,4 +2,6 @@
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'rubygems'
 require 'code_buddy'
+
+CodeBuddy::App.stack_string = STDIN
 CodeBuddy::App.run! :host => 'localhost'
