@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency             'sinatra',       '~> 1.1.0'
   s.add_dependency             'json_pure',     '~> 1.4.6'
   s.add_dependency             'coderay',       '~> 0.9.6'
+  s.add_dependency             'daemons'
 
   s.add_development_dependency 'rake',          '~> 0.8.7'
   s.add_development_dependency 'rspec',         '~> 2.3.0'

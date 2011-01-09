@@ -2,6 +2,16 @@
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'rubygems'
 require 'code_buddy'
+require 'code_buddy/server'
+require 'daemons'
 
-CodeBuddy::App.stack_string = STDIN unless STDIN.tty?
-CodeBuddy::App.run! :host => 'localhost'
+command = ARGV.shift
+
+case command
+when "start"
+  CodeBuddy::Server.start
+when "stop"
+  CodeBuddy::Server.stop
+when "exec"
+  CodeBuddy::Server.exec
+end
