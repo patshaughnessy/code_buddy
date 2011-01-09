@@ -8,3 +8,4 @@ cache
 Gemfile.lock
 example_trace
 tmp
+*.tmproj
