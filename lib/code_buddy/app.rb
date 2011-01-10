@@ -1,8 +1,8 @@
 module CodeBuddy
   class App < Sinatra::Base
-    set :views,  File.dirname(__FILE__) + '/views'
-    set :public, File.dirname(__FILE__) + '/public'
-
+    set :views,  File.expand_path(File.dirname(__FILE__) + '/views')
+    set :public, File.expand_path(File.dirname(__FILE__) + '/public')
+    
     class << self
       attr_reader   :stack
       attr_accessor :path_prefix

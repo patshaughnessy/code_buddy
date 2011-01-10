@@ -13,5 +13,7 @@ when "start"
 when "stop"
   CodeBuddy::Server.stop
 when "exec"
-  CodeBuddy::Server.exec
+  start if not running?
+  CodeBuddy::Server.exec stdin
+  launchy open
 end

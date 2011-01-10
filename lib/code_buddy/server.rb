@@ -7,16 +7,16 @@ module CodeBuddy
           puts "Code Buddy is already running."
           exit
         else
-          $0 = "code_buddy server"
-          Daemons.daemonize(:backtrace => true, :log_dir => File.join(File.dirname(__FILE__), "../../tmp"))
+          Daemons.daemonize(:app_name => "code_buddy_server")
+          CodeBuddy::App.enable :logging
           CodeBuddy::App.run! :host => 'localhost'
         end
       end
       
       def stop
         if process_line = running?
-          pid = process_line.split[0]
-          Process.kill("TERM", pid)
+          pid = process_line.split[1]
+          Process.kill("TERM", pid.to_i)
         else
           puts "Code Buddy is not running."
           exit
@@ -24,7 +24,7 @@ module CodeBuddy
       end
       
       def running?
-        `ps`.split("\n").any?{|process_line| process_line =~ /code_buddy server/}
+        `lsof -i :4567`.split("\n").find{|process_line| process_line =~ /ruby/}
       end
     end
   end
