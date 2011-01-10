@@ -7,13 +7,15 @@ require 'daemons'
 
 command = ARGV.shift
 
-case command
-when "start"
-  CodeBuddy::Server.start
-when "stop"
-  CodeBuddy::Server.stop
-when "exec"
-  start if not running?
-  CodeBuddy::Server.exec stdin
-  launchy open
+stdin = STDIN.read
+if !STDIN.tty? && !stdin.empty?
+  CodeBuddy::Server.update(stdin)
+else 
+  case command
+  when "start"
+    CodeBuddy::Server.start
+  when "stop"
+    CodeBuddy::Server.stop
+  when "exec"
+  end
 end

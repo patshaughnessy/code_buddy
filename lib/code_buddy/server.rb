@@ -8,7 +8,6 @@ module CodeBuddy
           exit
         else
           Daemons.daemonize(:app_name => "code_buddy_server")
-          CodeBuddy::App.enable :logging
           CodeBuddy::App.run! :host => 'localhost'
         end
       end
@@ -21,6 +20,20 @@ module CodeBuddy
           puts "Code Buddy is not running."
           exit
         end
+      end
+      
+      def update(stack_string)
+        require 'net/http'
+        require 'uri'
+        require 'launchy'
+        
+        if running?
+          Net::HTTP.post_form(URI.parse('http://localhost:4567/new'), {"stack" => stack_string})
+        else
+          CodeBuddy.app.stack_string = stack_string
+          start
+        end
+        Launchy.open("http://localhost:4567/stack/0")
       end
       
       def running?
