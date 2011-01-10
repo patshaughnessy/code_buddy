@@ -7,8 +7,8 @@ require 'daemons'
 
 command = ARGV.shift
 
-stdin = STDIN.read
-if !STDIN.tty? && !stdin.empty?
+stdin = STDIN.read unless STDIN.tty?
+if !stdin.nil? && !stdin.empty?
   CodeBuddy::Server.update(stdin)
 else 
   case command
