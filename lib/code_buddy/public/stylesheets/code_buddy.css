@@ -76,10 +76,12 @@ a {
   z-index:10;
   padding: 5px;
   background: #222;
-  -moz-border-radius-bottomleft:5px;
-  -moz-border-radius-bottomright:5px;
-  border-radius-bottomleft:5px;
-  border-radius-bottomright:5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 #legend ul {
   margin:0;
@@ -127,7 +129,7 @@ li {
   list-style: none;
 }
 
-li:hover {
+#stack li:hover {
   background:#444;
   cursor:pointer;
 }
@@ -138,4 +140,19 @@ li:hover {
 
 #opacity {
   width:25px;
+}
+
+#current {
+  background:#222;
+  color:white;
+  font-weight:bold;
+  text-align:right;
+  overflow:hidden;
+  padding:4px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
