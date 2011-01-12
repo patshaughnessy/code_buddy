@@ -1,8 +1,10 @@
+require 'erb'
+
 module CodeBuddy
-  class App < Sinatra::Base
-    set :views,  File.expand_path(File.dirname(__FILE__) + '/views')
-    set :public, File.expand_path(File.dirname(__FILE__) + '/public')
-    
+  class App
+    VIEW_PATH    = File.expand_path(File.dirname(__FILE__) + '/views')
+    STATIC_FILES = Rack::File.new(File.expand_path(File.dirname(__FILE__) + '/public'))
+
     class << self
       attr_reader   :stack
       attr_accessor :path_prefix
@@ -12,45 +14,131 @@ module CodeBuddy
       end
 
       def stack_string=(stack_string)
-        @stack = Stack.new(stack_string)
+        if stack_string.nil?
+          @stack = nil
+        else
+          @stack = Stack.new(stack_string)
+        end
       end
     end
 
-    get '/' do
-      redirect "#{path_prefix}/stack"
+
+    def call(env)
+      request = Rack::Request.new(env)
+
+      case request.path_info
+        
+      when /\/?(images|stylesheets|javascripts)/
+        STATIC_FILES.call(env)
+
+      when '/'
+        [ 302, {'Location'=> "#{path_prefix}/stack" }, [] ]
+
+      when /\/stack(\/\d+)*/
+        static_file_prefix = '../' if selected($1)
+        [ 200, { 'Content-Type' => 'text/html' },      display_stack(selected.to_i, static_file_prefix) ]
+
+      when /\/edit\/(\d*)/
+        self.class.stack.edit($1.to_i)
+        [ 200, { 'Content-Type' => 'text/html' },      '' ]
+
+      when /\/new/
+        self.class.stack_string = request.params['stack'] 
+        [ 302, {'Location'=> "#{path_prefix}/stack" }, [] ]
+
+      else
+        [ 404, {},                                     '']
+      end
+      
     end
 
-    get '/new' do
-      erb :form
+
+    def selected path=''
+      path =~ /\/(\d)/
+      $1
+    end
+    
+    def get_binding
+      binding
     end
 
-    post '/new' do
-      self.class.stack_string = params[:stack]
-      redirect "#{path_prefix}/stack"
+    def erb file
+      erb = ERB.new File.read "#{VIEW_PATH}/#{file}.erb"
+      erb.result self.get_binding
     end
 
-    get '/stack' do
-      display_stack(0)
-    end
-
-    get '/stack/:selected' do
-      @static_file_prefix = '../'
-      display_stack(params[:selected].to_i)
-    end
-
-    get '/edit/:selected' do
-      self.class.stack.edit(params[:selected].to_i)
-    end
-
-    def display_stack(selected_param)
+    def display_stack(selected_param, static_file_prefix = nil)
+      @static_file_prefix = static_file_prefix
       @stack = self.class.stack
       @stack.selected = selected_param if @stack
       erb :index
+    rescue => e
+      puts "display stackk error #{e}"
+      puts e.backtrace
     end
 
     def path_prefix
       self.class.path_prefix 
     end
-
+    
   end
 end
+
+# 
+# module CodeBuddy
+#   class App < Sinatra::Base
+#     set :views,  File.expand_path(File.dirname(__FILE__) + '/views')
+#     set :public, File.expand_path(File.dirname(__FILE__) + '/public')
+#     
+#     class << self
+#       attr_reader   :stack
+#       attr_accessor :path_prefix
+# 
+#       def exception=(exception)
+#         @stack = Stack.new(exception)
+#       end
+# 
+#       def stack_string=(stack_string)
+#         @stack = Stack.new(stack_string)
+#       end
+#     end
+# 
+#     get '/' do
+#       redirect "#{path_prefix}/stack"
+#     end
+# 
+#     get '/new' do
+#       erb :form
+#     end
+# 
+#     post '/new' do
+#       self.class.stack_string = params[:stack]
+#       redirect "#{path_prefix}/stack"
+#     end
+# 
+#     get '/stack' do
+#       display_stack(0)
+#     end
+# 
+#     get '/stack/:selected' do
+#       @static_file_prefix = '../'
+#       display_stack(params[:selected].to_i)
+#     end
+# 
+#     get '/edit/:selected' do
+#       self.class.stack.edit(params[:selected].to_i)
+#     end
+# 
+#     def display_stack(selected_param, static_file_prefix = nil)
+#       @static_file_prefix = static_file_prefix
+#       @stack = self.class.stack
+#       @stack.selected = selected_param if @stack
+#       erb :index
+#     end
+# 
+#     def path_prefix
+#       self.class.path_prefix 
+#     end
+# 
+#   end
+# end

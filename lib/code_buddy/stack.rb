@@ -10,7 +10,7 @@ module CodeBuddy
       else
         backtrace = exception_or_string
       end
-
+# puts backtrace.inspect
       @stack_frames = backtrace.collect do |string|
         StackFrame.new(string)
       end
