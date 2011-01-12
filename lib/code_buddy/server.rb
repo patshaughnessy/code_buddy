@@ -7,8 +7,7 @@ module CodeBuddy
           puts "Code Buddy is already running."
           exit
         else
-          Daemons.daemonize(:app_name => "code_buddy_server")
-          CodeBuddy::App.run! :host => 'localhost'
+          run!
         end
       end
       
@@ -16,6 +15,7 @@ module CodeBuddy
         if process_line = running?
           pid = process_line.split[1]
           Process.kill("TERM", pid.to_i)
+          puts "Code Buddy stopped. (pid #{pid.to_i})"
         else
           puts "Code Buddy is not running."
           exit
@@ -37,8 +37,32 @@ module CodeBuddy
       end
       
       def running?
-        `lsof -i :4567`.split("\n").find{|process_line| process_line =~ /ruby/}
+        `ps aux | grep code_buddy_server | grep -v grep`.split("\n").find{|process_line| process_line =~ /code_buddy_server/}
       end
+    private 
+    
+    def run!
+      handler      = detect_rack_handler
+      handler_name = handler.name.gsub(/.*::/, '')
+      port = 4567
+      puts "== Code Buddy/#{CodeBuddy::VERSION} starting on on #{port}"
+
+      Daemons.daemonize(:app_name => "code_buddy_server")
+      handler.run CodeBuddy::App.new, :Host => 'localhost', :Port => port
+    end
+
+    def detect_rack_handler
+      servers = Array(%w[thin mongrel webrick])
+      servers.each do |server_name|
+        begin
+          return Rack::Handler.get(server_name.downcase)
+        rescue LoadError
+        rescue NameError
+          puts 'rescuing...'
+        end
+      end
+      fail "Server handler (#{servers.join(',')}) not found."
+    end
     end
   end
 end
