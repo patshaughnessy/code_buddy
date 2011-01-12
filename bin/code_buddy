@@ -16,6 +16,5 @@ else
     CodeBuddy::Server.start
   when "stop"
     CodeBuddy::Server.stop
-  when "exec"
   end
 end

@@ -51,13 +51,9 @@ a {
   position: fixed;
   top:110;
   width:80%;
-  opacity:0.8;
+  opacity:0.9;
   z-index:10;
   margin-left:10px;
-}
-
-#current-line-heading {
-  
 }
 
 #code {
@@ -143,6 +139,7 @@ li {
 }
 
 #current {
+  white-space:nowrap;
   background:#222;
   color:white;
   font-weight:bold;
@@ -155,4 +152,8 @@ li {
   -moz-border-radius-topright: 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+}
+
+#current div {
+  float:right;
 }
