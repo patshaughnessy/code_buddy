@@ -30,7 +30,7 @@ module CodeBuddy
         if running?
           Net::HTTP.post_form(URI.parse('http://localhost:4567/new'), {"stack" => stack_string})
         else
-          CodeBuddy.app.stack_string = stack_string
+          CodeBuddy::App.stack_string = stack_string
           start
         end
         Launchy.open("http://localhost:4567/stack/0")

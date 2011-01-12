@@ -8,6 +8,9 @@ require 'code_buddy/stack'
 require 'code_buddy/stack_frame'
 require 'code_buddy/middleware'
 
+module CodeBuddy
+end
+
 begin
   if Rails.env.development? || Rails.env.test?
     case Rails::VERSION::MAJOR
