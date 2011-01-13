@@ -72,9 +72,6 @@ module CodeBuddy
       @stack = self.class.stack
       @stack.selected = selected_param if @stack
       erb :index
-    rescue => e
-      puts "display stackk error #{e}"
-      puts e.backtrace
     end
 
     def path_prefix
