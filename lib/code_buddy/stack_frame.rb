@@ -39,13 +39,16 @@ module CodeBuddy
         "<span class=\"coderay\">Unable to read file:\n&nbsp;\"#{@path}\"</span>"
       end
     end
-    
+
+    # different syntaxes for opening to a line number for different editors
     def open_in_editor
       case ENV['EDITOR']
       when 'mate'
         `mate #{path} -l #{line}`
-      when 'mvim'
-        `mvim +#{line} #{path}` 
+      when /(mvim|emacsclient)/
+        `#{$1} +#{line} #{path}`
+      when 'netbeans'
+        `netbeans #{path}:#{line}`
       else
         puts "Sorry unable to open the file for editing.  Please set your environment variable to either mate or mvim 'export EDITOR=mate' and restart the server"
       end
