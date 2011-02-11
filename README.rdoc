@@ -2,7 +2,7 @@
 
 CodeBuddy makes it easy for you to understand the code behind each line of a Ruby exception stack.  When something goes wrong during development and you get an exception do you read through the stack trace and  start opening files in VIM or TextMate?  With CodeBuddy the stack trace and source files are all available in your browser making it easy to understand what's going on.
 
-{See a Live Demo of CodeBuddy}http://www.alexrothenberg.com/examples/code_buddy/
+{See a Live Demo of CodeBuddy}[http://www.alexrothenberg.com/examples/code_buddy/]
 
 == Use it in your Rails app
 
