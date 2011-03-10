@@ -42,7 +42,8 @@ module CodeBuddy
 
     # different syntaxes for opening to a line number for different editors
     def open_in_editor
-      case ENV['EDITOR']
+      editor = ENV['CODE_BUDDY_EDITOR'] || ENV['EDITOR']
+      case editor
       when 'mate'
         `mate #{path} -l #{line}`
       when /(mvim|emacsclient)/
@@ -50,7 +51,7 @@ module CodeBuddy
       when 'netbeans'
         `netbeans #{path}:#{line}`
       else
-        puts "Sorry unable to open the file for editing.  Please set your environment variable to either mate or mvim 'export EDITOR=mate' and restart the server"
+        puts "Sorry unable to open the file for editing.  Please set your environment variable to either mate or mvim 'export CODE_BUDDY_EDITOR=mate' and restart the server"
       end
     end
   end

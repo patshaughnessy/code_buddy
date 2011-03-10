@@ -2,11 +2,10 @@ module CodeBuddy
   class Railtie < Rails::Railtie
     initializer "code_buddy.add_middleware" do |app|
       if app.config.action_dispatch.show_exceptions
-        app.middleware.swap ActionDispatch::ShowExceptions, CodeBuddy::ShowExceptions
+        app.middleware.swap          ActionDispatch::ShowExceptions, CodeBuddy::ShowExceptions, app.config.consider_all_requests_local
         app.middleware.insert_before CodeBuddy::ShowExceptions, CodeBuddy::ShowApp
       end
     end
-    CodeBuddy::App.path_prefix = '/code_buddy'
   end
 
   class ShowExceptions < ActionDispatch::ShowExceptions
@@ -16,7 +15,7 @@ module CodeBuddy
     end
 
     def rescue_action_locally(request, exception)
-      App.exception = exception
+      CodeBuddy::App.exception = exception
       super
     end
   end

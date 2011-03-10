@@ -2,7 +2,7 @@ module CodeBuddy
   class App < Sinatra::Base
     set :views,  File.expand_path(File.dirname(__FILE__) + '/views')
     set :public, File.expand_path(File.dirname(__FILE__) + '/public')
-    
+
     class << self
       attr_reader   :stack
       attr_accessor :path_prefix
@@ -20,15 +20,6 @@ module CodeBuddy
       redirect "#{path_prefix}/stack"
     end
 
-    get '/new' do
-      erb :form
-    end
-
-    post '/new' do
-      self.class.stack_string = params[:stack]
-      redirect "#{path_prefix}/stack"
-    end
-
     get '/stack' do
       display_stack(0)
     end
@@ -38,7 +29,16 @@ module CodeBuddy
       display_stack(params[:selected].to_i)
     end
 
+    post '/new' do
+      return 'Sorry CodeBuddy cannot paste a stack unless CodeBuddy is running locally.  This is for your own safety.' unless local_request?
+
+      self.class.stack_string = params[:stack]
+      redirect "#{path_prefix}/stack"
+    end
+
     get '/edit/:selected' do
+      return "Sorry CodeBuddy cannot edit a file unless CodeBuddy is running locally"                      unless local_request?
+
       self.class.stack.edit(params[:selected].to_i)
     end
 
@@ -49,8 +49,13 @@ module CodeBuddy
     end
 
     def path_prefix
-      self.class.path_prefix 
+      self.class.path_prefix
     end
+
+    def local_request?
+      request.ip == '127.0.0.1'
+    end
+
 
   end
 end

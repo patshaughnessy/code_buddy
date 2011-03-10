@@ -6,7 +6,13 @@ CodeBuddy makes it easy for you to understand the code behind each line of a Rub
 
 == Use it in your Rails app
 
-Simply add one line to your app's Gemfile and the Rails exception page just got better.
+Follow the instructions below to add CodeBuddy to your Rails 3 or Rails 2 app then the Rails exception page just got better.
+
+Make sure you've set the config setting config.consider_all_requests_local=true (it should already be that way in development.rb).  Now whenever you see a exception page you'll be able to click on the stack and see it inside CodeBuddy.
+
+=== Rails 3
+
+Add one line to your app's Gemfile.
 
   gem 'code_buddy'
 
@@ -14,13 +20,17 @@ And install it:
 
   $ bundle install
 
-Now when you're running in development (or any environment with config.consider_all_requests_local=true) whenever you see a exception page you'll be able to click on the stack and see it inside CodeBuddy.
+=== Rails 2
 
-== Run as a Sinatra app
+Add these two lines to your environment.rb
+
+  config.gem 'code_buddy'
+  config.middleware.use "CodeBuddy::ShowApp"
+
+== Run as a standalone app
 
   $ gem install code_buddy
-  $ code_buddy
-  == Sinatra/1.1.0 has taken the stage on 4567 for development with backup from Mongrel
+  $ code_buddy start
 
 Now open http://localhost:4567 and paste your stack.
 
