@@ -20,7 +20,7 @@
 
   <% traces.each do |name, trace| %>
     <div id="<%= name.gsub /\s/, '-' %>" style="display: <%= name == "Application Trace" ? 'block' : 'none' %>;">
-      <pre><code><%= trace.enum_with_index.collect { |line, index| link_to line, "/code_buddy/stack/#{index}" }.join("\n").html_safe -%></code></pre>
+      <pre><code><%= trace.each_with_index.collect { |line, index| link_to line, "/code_buddy/stack/#{index}" }.join("\n").html_safe -%></code></pre>
     </div>
   <% end %>
 </div>

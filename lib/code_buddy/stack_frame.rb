@@ -25,7 +25,7 @@ module CodeBuddy
         first_line_to_show      = [1, line-CODE_WINDOW].max
         last_line_to_show       = [lines_of_code.length, line + 1 + CODE_WINDOW].min
         code_to_show            = lines_of_code[first_line_to_show-1 .. last_line_to_show-1]
-        formatted_lines = CodeRay.scan(code_to_show,   :ruby).
+        formatted_lines = CodeRay.scan(code_to_show.join,   :ruby).
                                        html(:line_numbers      => :inline,
                                             :wrap              => :span,
                                             :bold_every        => false,

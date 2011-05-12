@@ -14,9 +14,9 @@ end
 begin
   if Rails.env.development? || Rails.env.test?
     case Rails::VERSION::MAJOR
-    when 2:
+    when 2
       require 'code_buddy/rails2/monkey_patch_action_controller'
-    when 3:
+    when 3
       require 'code_buddy/rails3/railtie.rb'
     end
   end

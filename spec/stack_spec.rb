@@ -16,7 +16,7 @@ describe CodeBuddy::Stack do
   end
   
   it 'should save the currently selected stack frame' do
-    mock_exception = mock(:backtrace=>'')
+    mock_exception = mock(:backtrace=>[''])
     mock_exception.expects(:is_a?).with(Exception).returns(true)
     stack = CodeBuddy::Stack.new mock_exception
     stack.selected = 3

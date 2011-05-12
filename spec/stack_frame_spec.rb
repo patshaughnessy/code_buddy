@@ -60,7 +60,7 @@ describe CodeBuddy::StackFrame do
       end
 
       it 'should read code from the middle of a file' do
-        CodeRay.expects(:scan).with(source_code[4..25], :ruby).returns(parsed_code=mock)
+        CodeRay.expects(:scan).with(source_code[4..25].join, :ruby).returns(parsed_code=mock)
         parsed_code.expects(:html).
                     with(:line_number_start => 5, :line_numbers => :inline, :wrap => :span, :bold_every=>false).
                     returns(formatted_source=mock)
@@ -71,7 +71,7 @@ describe CodeBuddy::StackFrame do
         stack_frame.code.should == "5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n<span class='container selected'>15<span class='overlay'></span></span>\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25"
       end
       it 'should read code from the top of a file' do
-        CodeRay.expects(:scan).with(source_code[0..13], :ruby).returns(parsed_code=mock)
+        CodeRay.expects(:scan).with(source_code[0..13].join, :ruby).returns(parsed_code=mock)
         parsed_code.expects(:html).
                     with(:line_number_start => 1, :line_numbers => :inline, :wrap => :span, :bold_every=>false).
                     returns(formatted_source=mock)
@@ -82,7 +82,7 @@ describe CodeBuddy::StackFrame do
         stack_frame.code.should == "1\n2\n<span class='container selected'>3<span class='overlay'></span></span>\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13"
       end
       it 'should read code from the bottom of a file' do
-        CodeRay.expects(:scan).with(source_code[19..32], :ruby).returns(parsed_code=mock)
+        CodeRay.expects(:scan).with(source_code[19..32].join, :ruby).returns(parsed_code=mock)
         parsed_code.expects(:html).
                     with(:line_number_start => 20, :line_numbers => :inline, :wrap => :span, :bold_every=>false).
                     returns(formatted_source=mock)
