@@ -1,5 +1,5 @@
 html {
-  font-family: Monaco;
+  font-family: Monaco, "Courier New", Courier, monospace;
   color: #E6E0DB;
   font-size:0.95em;
   font-color: white;
@@ -100,7 +100,7 @@ a {
 }
 
 #stack {
-  position: absolute; 
+  position: absolute;
   right:5px;
   top:100px;
   z-index:1;
