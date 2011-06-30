@@ -1,5 +1,5 @@
 html {
-  font-family: Monaco;
+  font-family: Monaco, Monospace, monospace, "Courier New", Courier;
   color: #E6E0DB;
   font-size:0.95em;
   font-color: white;
@@ -100,7 +100,7 @@ a {
 }
 
 #stack {
-  position: absolute; 
+  position: absolute;
   right:5px;
   top:100px;
   z-index:1;
@@ -120,7 +120,7 @@ ul {
 li {
   border-color: #666666;
   font-size: 12px;
-  font-family: Monaco;
+  font-family: Monaco, Monospace, monospace, "Courier New", Courier;
   line-height: 23px;
   list-style: none;
 }
