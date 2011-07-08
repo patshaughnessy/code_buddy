@@ -34,6 +34,10 @@ Add these two lines to your environment.rb
 
 Now open http://localhost:4567 and paste your stack.
 
+== Open file in text editor
+To open the current file you're looking at in an editor press "e" it will open the current file in your current editor using the environment variable CODE_BUDDY_EDITOR or if that's not set EDITOR.
+
+
 == Caveats
 
 We haven't tested viewing a stack with Internet Explorer or running the Sinatra app on Windows.
