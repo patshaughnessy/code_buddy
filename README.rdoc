@@ -48,4 +48,4 @@ We have tested with Rails 2.3 and Rails 3 on Ruby 1.8.7 and 1.9.2.
 
 {Alex Rothenberg}[http://www.alexrothenberg.com/], {Daniel Higginbotham}[http://www.flyingmachinestudios.com/], {Pat Shaughnessy}[http://patshaughnessy.net/]
 
-If you find a problem or have an idea please create an {issue}[https://github.com/patshaughnessy/code_buddy/issues/1] or fork the project and send us a pull request.
+If you find a problem or have an idea please create an {issue}[https://github.com/patshaughnessy/code_buddy/issues] or fork the project and send us a pull request.
