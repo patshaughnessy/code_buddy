@@ -2,6 +2,8 @@ module CodeBuddy
   class App < Sinatra::Base
     set :views,  File.expand_path(File.dirname(__FILE__) + '/views')
     set :public, File.expand_path(File.dirname(__FILE__) + '/public')
+     
+    LOCALHOST   = [/^127\.0\.0\.\d{1,3}$/, "::1", /^0:0:0:0:0:0:0:1(%.*)?$/].freeze
 
     class << self
       attr_reader   :stack
@@ -53,7 +55,7 @@ module CodeBuddy
     end
 
     def local_request?
-      request.ip == '127.0.0.1'
+      LOCALHOST.any? { |local_ip| local_ip === request.ip}
     end
 
 
