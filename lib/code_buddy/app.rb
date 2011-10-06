@@ -1,8 +1,12 @@
 module CodeBuddy
   class App < Sinatra::Base
     set :views,  File.expand_path(File.dirname(__FILE__) + '/views')
-    set :public, File.expand_path(File.dirname(__FILE__) + '/public')
-     
+    if Sinatra.const_defined?("VERSION") && Gem::Version.new(Sinatra::VERSION) >= Gem::Version.new("1.3.0")
+      set :public_folder, File.expand_path(File.dirname(__FILE__) + '/public')
+    else
+      set :public, File.expand_path(File.dirname(__FILE__) + '/public')
+    end
+
     LOCALHOST   = [/^127\.0\.0\.\d{1,3}$/, "::1", /^0:0:0:0:0:0:0:1(%.*)?$/].freeze
 
     class << self
