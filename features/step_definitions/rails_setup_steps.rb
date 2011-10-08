@@ -35,7 +35,7 @@ Given /^I have created a new Rails 2 app "([^"]*)" with code_buddy$/ do |app_nam
       """
     And I run "mkdir vendor/gems"
     And I run "ln -s #{File.expand_path("../../..", __FILE__)} vendor/gems/code_buddy-#{CodeBuddy::VERSION}"
-    And I run "script/generate cucumber --capybara"
+    And I run "rake environment ; script/generate cucumber --capybara"
     And I replace "# Add more mappings here." in "features/support/paths.rb" with:
       """
       when "code_buddy"
