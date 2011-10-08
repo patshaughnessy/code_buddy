@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency             'rack'
-  s.add_dependency             'sinatra',       '~> 1.1'
+  s.add_dependency             'sinatra',       '~> 1.1.0'
   s.add_dependency             'json_pure',     '~> 1'
   s.add_dependency             'coderay',       '~> 0.9'
   s.add_dependency             'daemons'
@@ -29,6 +29,10 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake',          '~> 0.8.7'
   s.add_development_dependency 'rspec',         '~> 2.3.0'
   s.add_development_dependency 'mocha',         '~> 0.9.10'
-  s.add_development_dependency 'cucumber',      '~> 0.10.0'
+  s.add_development_dependency 'cucumber',      '<= 0.10.0'
+  s.add_development_dependency 'cucumber-sinatra'
+  s.add_development_dependency 'gherkin',       '<= 2.3.2'
+  s.add_development_dependency 'highline'
+  s.add_development_dependency 'capybara'
   s.add_development_dependency 'aruba',         '~> 0.3.2'
 end
