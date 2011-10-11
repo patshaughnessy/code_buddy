@@ -1,7 +1,7 @@
 Feature: Make sure CodeBuddy works with a Rails3 app
 
 @disable-bundler
-@announce
+@announce @create-code_buddy_rails3_test-gemset
 Scenario: See a stack trace with links
   Given I'm using a clean gemset "code_buddy_rails3_test"
     And I have created a new Rails 3 app "new_rails3_app" with code_buddy 

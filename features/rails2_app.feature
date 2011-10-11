@@ -1,7 +1,7 @@
 Feature: Make sure CodeBuddy works with a Rails 2 app
 
 @disable-bundler
-@announce
+@announce @create-code_buddy_rails2_test-gemset
 Scenario: See a stack trace with links
   Given I'm using a clean gemset "code_buddy_rails2_test"
     And I have created a new Rails 2 app "new_rails2_app" with code_buddy 
