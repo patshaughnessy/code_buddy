@@ -1,7 +1,6 @@
 require 'sinatra'
 require 'coderay'
 require 'json'
-require 'json/add/rails'
 
 require 'code_buddy/app'
 require 'code_buddy/stack'

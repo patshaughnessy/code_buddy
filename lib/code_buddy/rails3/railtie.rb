@@ -2,7 +2,7 @@ module CodeBuddy
   class Railtie < Rails::Railtie
     initializer "code_buddy.add_middleware" do |app|
       if app.config.action_dispatch.show_exceptions
-        app.middleware.swap          ActionDispatch::ShowExceptions, CodeBuddy::ShowExceptions, app.config.consider_all_requests_local
+        app.middleware.swap          ActionDispatch::ShowExceptions, CodeBuddy::ShowExceptions
         app.middleware.insert_before CodeBuddy::ShowExceptions, CodeBuddy::ShowApp
       end
     end
